@@ -1,0 +1,27 @@
+
+Podaj przykłady selektorów, które pozwolą znaleźć na stronie następujące elementy:
+
+  - wszystkie elementy <div>, posiadające zarówno klasę “grid” oraz klasę “grid-12”.
+  var divsSelected = $("div.grid, div.grid-12"); —> zawierające klasę "grid" lub klasę "grid-12"
+  var divsSelected = $("div.grid").filter(".grid-12"); —> zawierające klasę "grid" oraz klasę "grid-12"
+
+- wszystkie elementy <a>, których atrybut “href" zaczyna się na “http”, znajdujące się w elemencie o klasie “nav”
+  var externalLinks = $(".nav a[href ^= 'http']");
+
+- wszystkie elementy <input>, których typ to “radio” lub “checkbox” oraz dodatkowo nie są aktualnie zaznaczone (checked).
+  var checklistsNotChecked = $("input[type='radio'], input[type='checkbox']").not(":checked");
+
+- wyłącznie pierwszy element <p>, który jest pusty (nie zawiera dzieci) oraz znajduje się w elemencie <div> z identyfikatorem “text”
+	a). zanim odkryłam selektor :empty 
+  	var firstEmptyP = $("div#rte p").filter(function(i, elem) {
+             return $(elem).children().length === 0;
+         }).first();
+
+	b). właściwe rozwiązanie
+	var firstEmptyP = $("div#rte p:empty”).first();
+
+
+ - wszystkie elementy z klasą “pagination-item”, które nie są elementem <span>
+  var pagination = $(".pagination-item").not("span");
+  var pagination = $(".pagination-item:not('span')");
+
